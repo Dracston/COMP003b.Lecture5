@@ -1,4 +1,6 @@
 
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 namespace COMP003b.Lecture5
 {
     public class Program
@@ -8,8 +10,12 @@ namespace COMP003b.Lecture5
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddControllers();
+            //TODO: Add XML support
+            builder.Services.AddControllers(options =>
+            {
+                options.InputFormatters.Add(new XmlSerializerInputFormatter(options));
+               options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
