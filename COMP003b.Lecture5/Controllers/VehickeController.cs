@@ -71,8 +71,26 @@ namespace COMP003b.Lecture5.Controllers
             return NoContent();
 
 
-            //TODO: Delete: Api/vehicle
+            
 
+        }
+        //TODO: Delete: Api/vehicle
+        [HttpDelete]
+        public ActionResult DeleteVehicle(int id)
+        {
+            //TODO: find vehicle by id
+            var vehicle = _vehicles.Find(v => v.Id == id);
+
+            //TODO: return not found if not found
+            if(vehicle == null)
+            {
+                return NotFound();
+
+            }
+
+            //Todo;remvove from list
+            _vehicles.Remove(vehicle);
+            return NoContent();
         }
     }
 }
